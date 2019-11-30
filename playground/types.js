@@ -44,13 +44,22 @@
 // const dadGets = smarties % kids;
 // console.log(`Each kid gets ${eachKidGets}`);
 
-// const price = 1034;
+const price = 1034;
 
-// const person = {
-//   first: 'wes',
-//   last: 'bos',
-//   age: 100
-// };
+const person = {
+  first: 'wes',
+  last: 'bos',
+  age: 100
+};
+
+const html = `
+  <div>
+    <p>${price}</p>
+  </div>
+  `
+;
+
+document.body.innerHTML = html;
 
 
 // let dog;
