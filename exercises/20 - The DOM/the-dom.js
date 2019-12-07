@@ -26,3 +26,21 @@ function toggleRound() {
 }
 
 pic.addEventListener('click', toggleRound);
+
+pic.alt = 'Cute Pup';
+pic.width = 200;
+console.log(pic.naturalWidth);
+pic.width = 200;
+pic.addEventListener('load', function() {
+  console.log(pic.width);
+});
+
+// pic.setAttribute('wes-is-cool', 'REALLY CUTE PUP');
+// console.log(pic.getAttribute('alt'));
+
+const custom = document.querySelector('.custom');
+console.log(custom.dataset);
+custom.addEventListener('click', function() {
+  alert(`welcome ${custom.dataset.name}
+  ${custom.dataset.last}`);
+});
