@@ -2,7 +2,7 @@
 const canvas = document.querySelector('#etch-a-sketch');
 const ctx = canvas.getContext('2d');
 const shakeButton = document.querySelector('.shake');
-const MOVE_AMOUNT = 60;
+const MOVE_AMOUNT = 30;
 
 // Set up canvas for drawing
 const { width } = canvas;
@@ -12,11 +12,12 @@ console.log(width, height);
 // create random x and y starting points on the canvas
 let x = Math.floor(Math.random() * width);
 let y = Math.floor(Math.random() * height);
+let hue = 0;
 
+ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 ctx.lineJoin = 'square';
 ctx.lineCap = 'round';
 ctx.lineWidth = MOVE_AMOUNT;
-ctx.fillStyle = 'turquoise';
 
 ctx.beginPath();
 ctx.moveTo(x, y);
@@ -26,10 +27,26 @@ ctx.stroke();
 // write a draw function
 function draw({ key }) {
   console.log(key);
+  hue += 10;
+  ctx.strokeStyle = `hsl(${Math.random() * 359}, 100%, 50%)`;
   ctx.beginPath();
   ctx.moveTo(x, y);
-  x -= MOVE_AMOUNT;
-  y -= MOVE_AMOUNT;
+  switch (key) {
+    case 'ArrowUp':
+      y -= MOVE_AMOUNT;
+      break;
+    case 'ArrowRight':
+      x += MOVE_AMOUNT;
+      break;
+    case 'ArrowDown':
+      y += MOVE_AMOUNT;
+      break;
+    case 'ArrowLeft':
+      x -= MOVE_AMOUNT;
+      break;
+    default:
+      break;
+  }
   ctx.lineTo(x, y);
   ctx.stroke();
 }
