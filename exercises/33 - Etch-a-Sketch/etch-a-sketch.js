@@ -14,7 +14,6 @@ let x = Math.floor(Math.random() * width);
 let y = Math.floor(Math.random() * height);
 let hue = 0;
 
-ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 ctx.lineJoin = 'square';
 ctx.lineCap = 'round';
 ctx.lineWidth = MOVE_AMOUNT;
@@ -28,7 +27,7 @@ ctx.stroke();
 function draw({ key }) {
   console.log(key);
   hue += 10;
-  ctx.strokeStyle = `hsl(${Math.random() * 359}, 100%, 50%)`;
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath();
   ctx.moveTo(x, y);
   switch (key) {
@@ -59,5 +58,14 @@ function handleKey(event) {
   }
 }
 
+function clearCanvas() {
+  canvas.classList.add('shake');
+  ctx.clearRect(0, 0, width, height);
+  canvas.addEventListener('animationend', function() {
+    canvas.classList.remove('shake');
+  });
+}
+
 // listen for arrow keys
 window.addEventListener('keydown', handleKey);
+shakeButton.addEventListener('click', clearCanvas);
