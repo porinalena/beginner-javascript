@@ -1,22 +1,16 @@
 // debugger;
+const terms = document.querySelector('.terms-and-conditions');
 const watchForMe = document.querySelector('.watch');
 const acceptButton = document.querySelector('.accept');
-const hrEl = document.querySelector('hr');
 
-function observerCallback() {
+function observerCallback(payload) {
   // acceptButton.removeAttribute('disabled');
   console.log('meow');
 }
 
 const observer = new IntersectionObserver(observerCallback, {
-  root: hrEl,
-  threshold: 0.6,
-});
-
-watchForMe.addEventListener('scroll', function() {
-  console.log('I just passed watch element');
-  // console.log(event.currentTarget);
-  console.log(observer);
+  root: terms,
+  threshold: 1.0,
 });
 
 observer.observe(watchForMe);
