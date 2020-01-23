@@ -1,16 +1,17 @@
-// debugger;
 const terms = document.querySelector('.terms-and-conditions');
-const watchForMe = document.querySelector('.watch');
 const acceptButton = document.querySelector('.accept');
 
 function observerCallback(payload) {
-  // acceptButton.removeAttribute('disabled');
-  console.log('meow');
+  if (payload[0].intersectionRatio === 1) {
+    acceptButton.disabled = false;
+  } else {
+    acceptButton.disabled = true;
+  }
 }
 
 const observer = new IntersectionObserver(observerCallback, {
   root: terms,
-  threshold: 1.0,
+  threshold: 1,
 });
 
-observer.observe(watchForMe);
+observer.observe(terms.lastElementChild);
